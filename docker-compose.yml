@@ -1,0 +1,33 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  odoo8:
+    build: .
+    ports:
+      - "8069:8069"
+	restart: always
+    container_name: odoo8
+    volumes:
+      - logvolume01:/var/log
+      - extraaddons:/mnt/extra-addons
+      - varlibodoo:/var/lib/odoo
+    links:
+      - redis
+  postgres9:
+    image: postgres:9
+	restart: always
+    container_name: postgres9
+    volumes:
+        - varlibpostgresdata:/var/lib/postgresql/data
+	environment:
+      POSTGRES_USER: odoo8
+	  POSTGRES_PASSWORD: mysecretpassword
+	  POSTGRES_HOST_AUTH_METHOD: trust
+      
+volumes:
+    logvolume01:
+    extraaddons:
+    varlibodoo:
+    varlibpostgresdata:
+    
+
+	  
