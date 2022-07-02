@@ -1,0 +1,19 @@
+docker run --name odoo-postgres -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres
+
+docker run --name odoo-postgres9 -e POSTGRES_USER=odoo8 -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:9
+
+
+
+as postgres :
+createuser odoo8
+alter user odoo8 createdb;
+
+
+b6e5d8361fbffd43bc4fe447c921a58d
+8336f27cb3018ad8915fa5d05fbd3cfc
+14d5ec169b8b803a12801fb91ac4e329
+
+
+93b297410f4dcc92c4f4726c86a2f55e
+75f79b3e41662e21dccf2e7849230e1a
+
