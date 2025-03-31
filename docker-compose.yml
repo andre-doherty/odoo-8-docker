@@ -4,30 +4,26 @@ services:
     build: .
     ports:
       - "8069:8069"
-	restart: always
+    restart: always
     container_name: odoo8
     volumes:
       - logvolume01:/var/log
       - extraaddons:/mnt/extra-addons
       - varlibodoo:/var/lib/odoo
-    links:
-      - redis
+      - ./openerp-server.conf:/etc/odoo/openerp-server.conf
   postgres9:
-    image: postgres:9
-	restart: always
+    image: postgres:9.4
+    restart: always
     container_name: postgres9
     volumes:
-        - varlibpostgresdata:/var/lib/postgresql/data
-	environment:
+        - varlibpostgresdata94:/var/lib/postgresql/data
+    environment:
       POSTGRES_USER: odoo8
-	  POSTGRES_PASSWORD: mysecretpassword
-	  POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_HOST_AUTH_METHOD: trust
       
 volumes:
     logvolume01:
     extraaddons:
     varlibodoo:
-    varlibpostgresdata:
-    
-
-	  
+    varlibpostgresdata94:
